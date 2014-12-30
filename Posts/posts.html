@@ -2,21 +2,33 @@
 <html>
 <head>
 	<link rel="stylesheet" type="text/css" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.18/angular.min.js"></script>
 </head>
 
-<body>
-	<div class="container">
+<body ng-app="app">
+	<div ng-controller="PostsCtrl" class="container">
 	  <h1>Recent Posts</h1>
 	  <ul class="list-group">
-	  	<li class="list-group-item">
-	  		<strong>@Jimmy_Westside</strong>
-	  		<span>MEAN + Rails + Mobile</span>
-	  	</li>
-	  	<li class="list-group-item">
-	  		<strong>@James_Newman</strong>
-	  		<span>trying out express</span>
+	  	<li ng-repeat="post in posts" class="list-group-item">
+	  		<strong>@{{post.username}}</strong>
+	  		<span>{{ post.body}}</span>
 	  	</li>
 	  </ul>
-	</div>
+	</div>	
 </body>
+<script>
+	var app = angular.module('app', [])
+	app.controller('PostsCtrl', function($scope) {
+		$scope.posts = [
+		{
+			username: 'Jimmy_Westside', 
+			body: 'Mean + Rails + Mobile'
+		}, 
+		{
+			username: "James_Newman", 
+			body: "trying out express"
+		}
+	  ]
+	})
+</script>
 </html>
