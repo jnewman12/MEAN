@@ -8,14 +8,23 @@
 <body ng-app="app">
 	<div ng-controller="PostsCtrl" class="container">
 	  <h1>Recent Posts</h1>
+	  <form role="form">
+	    <div class="form-group">
+	      <div class="input-group">
+	        <input ng-model="postBody" class="form-control"/>
+	        <span class="input-group-btn">
+	        	<button ng-click="addPost()" class="btn btn-default">Add Post</button>
+	        </span>
+	      </div>
+	    </div>
+	  </form>
 	  <ul class="list-group">
 	  	<li ng-repeat="post in posts" class="list-group-item">
 	  		<strong>@{{post.username}}</strong>
-	  		<span>{{ post.body}}</span>
+	  		<span>{{post.body}}</span>
 	  	</li>
-	  </ul>
-	</div>	
-</body>
+	  </ul>      
+	</div>  
 <script>
 	var app = angular.module('app', [])
 	app.controller('PostsCtrl', function($scope) {
@@ -29,6 +38,19 @@
 			body: "trying out express"
 		}
 	  ]
+	  $scope.addPost = function () {
+	  	if ($scope.postBody) {
+	  		//unshift post
+	  		$scope.posts.unshift({
+	  			username: "Jimmy_Westside",
+	  			body: $scope.postBody // use text entered
+	  		})
+	  		// clear field
+	  		$scope.postBody = null
+	  	}
+	  }
 	})
 </script>
+</body>
 </html>
+
