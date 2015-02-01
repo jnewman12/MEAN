@@ -7,7 +7,7 @@ app.use(bodyParser.json())
 app.get('/api/posts', function (req, res) {
 	res.json([
 	{
-		username: 'Jimmy_Westside',
+		username: 'Jimmy__Westside',
 		body: 'node and such'
 	}
  ])
